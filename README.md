@@ -8,13 +8,13 @@
 
 
 ## 使用方法 
-`python main.py {yourUSERNAME} {yourPASSWORD} {SUBJECT- ID} {COURSE- ID} --driverPath --noCaptcha`  
+`python main.py {yourUSERNAME} {yourPASSWORD} {SUBJECTID} {COURSEID} --driverPath --noCaptcha`  
 *输入的时候不需要输入`{}`*   
 
 - yourUSERNAME 例如 zhangsan@mails.ucas.ac.cn
 - PASSWORD 输入自己的sep登录密码
-- SUBJECT- ID 学院对应的- ID，目前只可选一个学院，如需增加可以在代码中自行修改
-- COURSE- ID 课程编码，可在学期课表或选择课程中查找
+- SUBJECTID 学院对应的- ID，目前只可选一个学院，如需增加可以在代码中自行修改
+- COURSEID 课程编码，可在学期课表或选择课程中查找
 - driverPath 如果没有chrome浏览器需要下载chrome浏览器，默认路径在`C:\Program Files\Google\Chrome\Application`，根据自己路径调整 
 - noCaptcha 为可选参数，有时登录界面不需要验证码，此时需要加上--noCaptcha，需要验证码时，不需要加该参数
 
