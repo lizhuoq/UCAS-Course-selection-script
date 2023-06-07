@@ -76,40 +76,49 @@ click(driver, By.LINK_TEXT, '选择课程')
 
 sleep(2)
 
-frame = driver.find_element(By.ID, args.subjectID)
-print(frame.is_selected())
-frame.click()
-print(frame.is_selected())
+while True:
+    frame = driver.find_element(By.ID, args.subjectID)
+    print(frame.is_selected())
+    frame.click()
+    print(frame.is_selected())
 
-sleep(1)
+    sleep(1)
 
-driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-click(driver, By.XPATH, '//button[contains(text(), "新增加本学期研究生课程")]')
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    click(driver, By.XPATH, '//button[contains(text(), "新增加本学期研究生课程")]')
 
-sleep(1)
+    sleep(1)
 
-loop(driver, By.XPATH, args.courseID)
+    loop(driver, By.XPATH, args.courseID)
 
-driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-ocrImage = driver.find_element(By.ID, 'adminValidateImg')
-ocrImage.screenshot('ocrCal.png')
+    ocrImage = driver.find_element(By.ID, 'adminValidateImg')
+    ocrImage.screenshot('ocrCal.png')
 
-image = Image.open('ocrCal.png')
-res = ocrCal('ocrCal.png', import_onnx_path='models\ocr_1.0_299_3000_2023-06-07-12-34-41.onnx', \
-             charsets_path='models\charsets.json')
+    image = Image.open('ocrCal.png')
+    res = ocrCal('ocrCal.png', import_onnx_path='models\ocr_1.0_299_3000_2023-06-07-12-34-41.onnx', \
+                charsets_path='models\charsets.json')
 
-vcode = driver.find_element(By.ID, 'vcode')
-vcode.send_keys(res)
+    vcode = driver.find_element(By.ID, 'vcode')
+    vcode.send_keys(res)
 
-submit_button = driver.find_element(By.XPATH, "//button[@name='sb' and @value='y']")
-submit_button.click()
+    submit_button = driver.find_element(By.XPATH, "//button[@name='sb' and @value='y']")
+    submit_button.click()
 
-sleep(2)
+    sleep(2)
 
-current_url = driver.current_url
+    current_url = driver.current_url
 
-confirm_button = driver.find_element(By.XPATH, "//button[text()='确定']")
-confirm_button.click()
+    confirm_button = driver.find_element(By.XPATH, "//button[text()='确定']")
+    confirm_button.click()
 
-print(f'[{datetime.datetime.now()}]选课完成！')
+    print(f'[{datetime.datetime.now()}]选课完成！')
+    sleep(1)
+
+    if driver.find_element(By.XPATH, \
+                "//a[text()='"+args.courseID+"']/ancestor::tr//button").is_enabled():
+        print(f'[{datetime.datetime.now()}]选课完成！')
+        break
+
+

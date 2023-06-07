@@ -56,12 +56,15 @@ def loop(driver, by, value):
     xpath_expression = "//tr[td/a/span[text()='"+value+"']]/td/input[@type='checkbox']"
     checkbox = driver.find_element(by, xpath_expression)
     if checkbox.is_enabled():
+        print(checkbox.is_enabled())
         print(f'[{datetime.datetime.now()}]已经选择......')
-        checkbox.click()
+        # checkbox.click()
+        time.sleep(2)
+        driver.execute_script("$(arguments[0]).click()",checkbox)
     else:
         print(f'[{datetime.datetime.now()}]课程已满，刷新......')
         driver.refresh()
-        time.sleep(5)
+        time.sleep(3)
         loop(driver, by, value)
 
 
