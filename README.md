@@ -64,8 +64,9 @@ python的版本为3.9.16
 ## 3.data文件和model文件
 ```
 data/ 
-  |---- num.png
-  |---- labels.txt
+|---- labels.txt
+|---- images
+            |----...num.png
 ``` 
 labels 每行内容为  
 num值.png\t1+1=?\n  
