@@ -24,8 +24,8 @@ driver.get('https://sep.ucas.ac.cn/')
 while True:
     username_input = driver.find_element(By.ID, 'userName1')
     password_input = driver.find_element(By.ID, 'pwd1')
-    username_input.send_keys('lizhuoqun221@mails.ucas.ac.cn')
-    password_input.send_keys('yangyang137')
+    username_input.send_keys()
+    password_input.send_keys()
     captcha_image = driver.find_element(By.ID, 'certCode1')
     captcha_image.screenshot('captcha.png')
 
