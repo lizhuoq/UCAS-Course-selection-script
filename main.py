@@ -15,6 +15,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 import os
+import random
 
 from utils import driverOption, click, dataCollection
 
@@ -369,12 +370,10 @@ def main(username, password, course_id):
                     print("✓ 已选择课程")
                     break
                 else:
-                    print(f"[{datetime.datetime.now()}] 课程已满，3秒后刷新重试...")
-                    #####
-                    # 实际选课的时候这里要加强！！！缩短点 不然抢不过他们
-                    #####
-                    sleep(15)
-                    # sleep(3)
+                    # 生成3-5秒的随机等待时间，避免被识别为机器人
+                    random_wait = random.uniform(3, 5)
+                    print(f"[{datetime.datetime.now()}] 课程已满，{random_wait:.1f}秒后刷新重试...")
+                    sleep(random_wait)
                     driver.refresh()
                     sleep(1)
 
